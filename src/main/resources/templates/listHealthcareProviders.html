@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header::head"></div>
+    <title>All Healthcare Providers</title>
+</head>
+<body>
+<div th:replace="fragments/header::navbar(backUrl='/')"></div>
+<div class="container">
+    <h2 class="text-center">All Healthcare Providers</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Specialty</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="provider : ${providers}">
+            <td th:text="${provider.name}"></td>
+            <td th:text="${provider.email}"></td>
+            <td th:text="${provider.specialty}"></td>
+            <td>
+                <a th:href="@{/healthcare-providers/edit/{id}(id=${provider.id})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/healthcare-providers/delete/{id}(id=${provider.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/healthcare-providers/add}" class="btn btn-primary btn-block">Add Healthcare Provider</a>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+</body>
+</html>

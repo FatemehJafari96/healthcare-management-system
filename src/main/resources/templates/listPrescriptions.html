@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="fragments/header::head"></div>
+  <title>All Prescriptions</title>
+</head>
+<body>
+<div th:replace="fragments/header::navbar(backUrl='/')"></div>
+<div class="container">
+  <h2 class="text-center">All Prescriptions</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Medication</th>
+      <th>Dosage</th>
+      <th>Prescription Date</th>
+      <th>Patient</th>
+      <th>Healthcare Provider</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="prescription : ${prescriptions}">
+      <td th:text="${prescription.medication}"></td>
+      <td th:text="${prescription.dosage}"></td>
+      <td th:text="${prescription.prescriptionDate}"></td>
+      <td th:text="${prescription.patient.firstName} + ' ' + ${prescription.patient.lastName}"></td>
+      <td th:text="${prescription.healthcareProvider.name}"></td>
+      <td>
+        <a th:href="@{/prescriptions/edit/{id}(id=${prescription.id})}" class="btn btn-primary">Edit</a>
+        <a th:href="@{/prescriptions/delete/{id}(id=${prescription.id})}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/prescriptions/add}" class="btn btn-primary">Add Prescription</a>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+</body>
+</html>

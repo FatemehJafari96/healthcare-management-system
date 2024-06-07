@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="fragments/header::head"></div>
+  <title>Add Healthcare Provider</title>
+</head>
+<body th:style="'background-image:url(' + @{~/img/HealthcareProvider.jpg} + '); background-repeat: no-repeat, repeat; background-size: cover;'">
+<div class="container" style="width: 600px;background: #ffffffcc;margin: auto;padding: 50px;border-radius: 20px;margin-top: 84px;" >
+<h2 class="text-center">Login</h2>
+<form action="/login" method="post" class="form-group">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required class="form-control">
+  <br>
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required class="form-control">
+  <br>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+<p th:if="${param.error}" class="alert alert-danger text-center">Invalid username or password. Please try again.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="fragments/header::head"></div>
+  <title>Edit Healthcare Provider</title>
+</head>
+<body>
+<div th:replace="fragments/header::navbar(backUrl='/healthcare-providers')"></div>
+<div class="container">
+  <h2 class="text-center">Edit Healthcare Provider</h2>
+  <form th:action="@{/healthcare-providers/edit/{id}(id=${provider.id})}" th:object="${provider}" method="post" class="form-group">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" th:field="*{name}" required class="form-control" id="name" placeholder="Enter Name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" th:field="*{email}" required class="form-control" id="email" placeholder="Enter Email">
+    </div>
+    <div class="form-group">
+      <label for="specialty">Specialty:</label>
+      <input type="text" th:field="*{specialty}" required class="form-control" id="specialty" placeholder="Enter Specialty">
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+</body>
+</html>

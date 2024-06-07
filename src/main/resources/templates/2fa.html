@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header::head"></div>
+    <title>Add Healthcare Provider</title>
+</head>
+<body th:style="'background-image:url(' + @{~/img/HealthcareProvider.jpg} + '); background-repeat: no-repeat, repeat; background-size: cover;'">
+<div class="container" style="width: 600px;background: #ffffffcc;margin: auto;padding: 50px;border-radius: 20px;margin-top: 84px;" >
+    <h2 class="text-center">Two-Factor Authentication</h2>
+    <p class="text-center">Scan the QR code with your authenticator app and enter the verification code below.</p>
+    <div class="text-center">
+        <img th:src="@{${qrUrl}}" alt="QR Code" class="img-fluid">
+    </div>
+    <form action="/verify-2fa" method="post" class="form-group">
+        <label for="code" class="text-left">Verification Code:</label>
+        <div>
+            <input type="text" id="code" name="code" required class="form-control inline-block" style="width: 79%;display: inline;">
+            <button type="submit" class="btn btn-primary inline-block" style="width: 20%;">Verify</button>
+        </div>
+    </form>
+    <p th:if="${param.error}" class="alert alert-danger text-center">Invalid code. Please try again.</p>
+</div>
+</body>
+</html>

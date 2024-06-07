@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header::head"></div>
+    <title>Add Prescription</title>
+</head>
+<body>
+<div th:replace="fragments/header::navbar(backUrl='/prescriptions')"></div>
+<div class="container">
+    <h2 class="text-center">Add Prescription</h2>
+    <form th:action="@{/prescriptions}" th:object="${prescription}" method="post" class="form">
+        <div class="form-group">
+            <label for="medication">Medication:</label>
+            <input type="text" th:field="*{medication}" required class="form-control" id="medication" placeholder="Enter Medication">
+        </div>
+        <div class="form-group">
+            <label for="dosage">Dosage:</label>
+            <input type="text" th:field="*{dosage}" required class="form-control" id="dosage" placeholder="Enter Dosage">
+        </div>
+        <div class="form-group">
+            <label for="prescriptionDate">Prescription Date:</label>
+            <input type="date" th:field="*{prescriptionDate}" required class="form-control" id="prescriptionDate" placeholder="Enter Prescription Date">
+        </div>
+        <div class="form-group">
+            <label for="patient">Patient:</label>
+            <select th:field="*{patient.id}" class="form-control">
+                <option th:each="patient : ${patients}" th:value="${patient.id}" th:text="${patient.firstName + ' ' + patient.lastName}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="healthcareProvider">Healthcare Provider:</label>
+            <select th:field="*{healthcareProvider.id}" class="form-control">
+                <option th:each="healthcareProvider : ${healthcareProviders}" th:value="${healthcareProvider.id}" th:text="${healthcareProvider.name}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+</body>
+</html>
